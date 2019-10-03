@@ -1,23 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import AdminPanel from './AdminPanel';
 
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 configure({adapter: new Adapter()});
 
-describe('App tests', () => {
+describe('AdminPanel tests', () => {
 
    it('renders without crashing', () => {
       const div = document.createElement('div');
-      ReactDOM.render(<App />, div);
+      ReactDOM.render(<AdminPanel />, div);
       ReactDOM.unmountComponentAtNode(div);
     });
 
     it('should run hello world', () => {
-       const wrapper = shallow(<App/>);
-       expect(wrapper.find('i').text()).toBe('Hello World');
+       const wrapper = shallow(<AdminPanel/>);
+       expect(wrapper.find('div').text()).toBe('Inwentarz');
     });
     
 });
