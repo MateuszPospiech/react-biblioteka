@@ -9,15 +9,18 @@ configure({adapter: new Adapter()});
 
 describe('Order tests', () => {
 
-   it('renders without crashing', () => {
-      const div = document.createElement('div');
-      ReactDOM.render(<Order />, div);
-      ReactDOM.unmountComponentAtNode(div);
-    });
+    it('Inventory renders without a problem', () => {
+        const div = document.createElement('div');
+        const order = [];
+        ReactDOM.render(<Order order={order} />, div);
+        ReactDOM.unmountComponentAtNode(div);
+    })
 
-    it('should run hello world', () => {
-       const wrapper = shallow(<Order/>);
-       expect(wrapper.find('div').text()).toBe('Zamówienie');
-    });
-    
-});
+    it('Snapshot matches', () => {
+        const order = [];
+        const wrapper = shallow(<Order order={order}/>);
+        expect(wrapper).toMatchSnapshot();
+    })
+
+})
+

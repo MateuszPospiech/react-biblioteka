@@ -1,10 +1,21 @@
 import React from 'react';
+import OrderView from './OrderView';
 
 class Order extends React.Component {
+    
+    render() {
 
-   render() {
-      return <div>Zamówienie</div>
-   }
+        const orderedBooks = this.props.order.map( order => {
+            return <OrderView book={order} removeFromOrder={this.props.removeFromOrder}/>
+        })
+
+        return (
+            <div className="order col-6">
+                <h2>Your order:</h2>
+                {orderedBooks}
+            </div>
+        );
+    }
 }
 
 export default Order;

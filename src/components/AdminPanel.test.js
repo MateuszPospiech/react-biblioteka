@@ -9,15 +9,16 @@ configure({adapter: new Adapter()});
 
 describe('AdminPanel tests', () => {
 
-   it('renders without crashing', () => {
-      const div = document.createElement('div');
-      ReactDOM.render(<AdminPanel />, div);
-      ReactDOM.unmountComponentAtNode(div);
-    });
+    it('AdminPanel renders without a problem', () => {
+        const div = document.createElement('div');
+        ReactDOM.render(<AdminPanel />, div);
+        ReactDOM.unmountComponentAtNode(div);
+    })
 
-    it('should run hello world', () => {
-       const wrapper = shallow(<AdminPanel/>);
-       expect(wrapper.find('div').text()).toBe('Inwentarz');
-    });
-    
-});
+    it('Snapshot matches', () => {
+        const wrapper = shallow(<AdminPanel/>);
+        expect(wrapper).toMatchSnapshot();
+    })
+
+})
+
