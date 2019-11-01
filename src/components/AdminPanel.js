@@ -1,7 +1,8 @@
 import React from 'react';
-import {fbase, firebaseApp} from '../fbase';
+import {fbase} from '../fbase';
 
 import '../App.css';
+import LoginPanel from './LoginPanel';
 
 class AdminPanel extends React.Component {
 
@@ -16,19 +17,9 @@ class AdminPanel extends React.Component {
                 onStock: true,
                 image: ""
             },
-            loggedIn : false,
-            email: "",
-            password: ""
+            loggedIn : false
         };
     };
-
-    handleLoginChange = (event) => { 
-    
-        this.setState({
-            [event.target.name]: event.target.value
-        })
-        
-    }
 
     handleChange = (event) => {
 
@@ -106,18 +97,7 @@ class AdminPanel extends React.Component {
         fbase.removeBinding(this.ref);
     }
 
-    authenticate = (event) => {
-        event.preventDefault();
-        firebaseApp.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-            .then( () => {
-                this.setState({
-                    loggedIn: true
-                })
-            })
-            .catch( () => {
-                console.log('Unable to authenticate');
-            })
-    }
+    changeLoggedIn = (newValue) => this.setState({loggedIn: newValue})
 
 
     render() {
@@ -126,17 +106,8 @@ class AdminPanel extends React.Component {
             <div className="container">
                 <div className="d-flex justify-content-center">
                 {!this.state.loggedIn &&
-                    <form className="log-in-form" onSubmit={this.authenticate}>
-                        <div className="form-group">
-                        <input type="text" placeholder="email" id="email_bs" name="email" className="form-control" 
-                            onChange={this.handleLoginChange} value={this.state.email}/>
-                        </div>
-                        <div className="form-group">
-                        <input type="password"  id="password_bs" name="password" className="form-control" 
-                            onChange={this.handleLoginChange} value={this.state.password}/>
-                        </div>
-                        <button type="submit" className="btn btn-primary">Log in</button>
-                    </form>
+                    <LoginPanel changeLoggedIn={this.changeLoggedIn}></LoginPanel>
+                    
                 }
                 {this.state.loggedIn && 
                     <div className="adminPanel col-6">
