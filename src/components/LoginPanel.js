@@ -15,7 +15,8 @@ class LoginPanel extends React.Component {
       event.preventDefault();
       firebaseApp.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
           .then( () => {
-              this.this.props.changeLoggedIn(true);
+              this.props.changeLoggedIn(true);
+              console.log('able to authenticate');
           })
           .catch( () => {
               console.log('Unable to authenticate');
