@@ -14,7 +14,13 @@ class AdminPanel extends React.Component {
     };
 
     changeLoggedIn = (newValue) => this.setState({loggedIn: newValue})
-
+    
+    componentDidMount() {
+        if (localStorage.getItem("loggedIn")) {
+           this.setState({loggedIn:  localStorage.getItem("loggedIn")})
+           console.log('test');
+        }
+     }
 
     render() {
 

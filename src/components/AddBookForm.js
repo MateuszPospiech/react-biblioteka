@@ -18,6 +18,10 @@ class AddBookForm extends React.Component {
    }
 
    componentDidMount() {
+      if (localStorage.getItem("loggedIn")) {
+         this.setState({loggedIn:  localStorage.getItem("loggedIn")})
+         console.log('test');
+      }
       this.ref = fbase.syncState('bookstore/books',{
           context: this,
           state: 'books'
@@ -105,8 +109,9 @@ class AddBookForm extends React.Component {
                      <input type="text" placeholder="Book image" id="image" name="image" className="form-control"
                         onChange={this.handleChange} value={this.state.book.image} />
                   </div>
-                  <button type="submit" className="btn btn-primary">Add</button>
+                  <button type="submit" className="btn btn-primary form-group">Add</button>
             </form>
+            <button type="submit" className="btn btn-error">Logout</button>
          </div>
       )
    }
