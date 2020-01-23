@@ -6,7 +6,7 @@ class Header extends React.Component {
     constructor() {
         super();
         this.state = {
-            bookstoreName : "Black Books",
+            bookstoreName : "Black Books 2019",
             clicked : true,
             textColor : "white",
             backgroundColor : "black"
@@ -17,13 +17,13 @@ class Header extends React.Component {
 
         if(this.state.clicked) {
             this.setState({
-                bookstoreName : "White Books",
+                bookstoreName : "White Books 2019",
                 textColor : "black",
                 backgroundColor : "white"
             })
         } else {
             this.setState({
-                bookstoreName : "Black Books",
+                bookstoreName : "Black Books 2019",
                 textColor : "white",
                 backgroundColor : "black"
              
